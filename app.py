@@ -23,7 +23,7 @@ import streamlit as st
 # ----------------------------------------------------------------------
 st.set_page_config(
     page_title="Login App",
-    page_icon="🔐",
+    page_icon="",
     layout="centered",
 )
 
@@ -94,7 +94,7 @@ def logout():
 # UI: Login screen
 # ----------------------------------------------------------------------
 def render_login():
-    st.title("🔐 Login")
+    st.title("Login")
     st.caption("Sign in to continue")
 
     if st.session_state.login_attempts >= MAX_ATTEMPTS:
@@ -149,7 +149,7 @@ def render_dashboard():
     col1, col2, col3 = st.columns(3)
     col1.metric("Active Sessions", "1")
     col2.metric("Account Role", user["role"])
-    col3.metric("Status", "✅ Verified")
+    col3.metric("Status", "Verified")
 
     st.divider()
     st.subheader("Session details")
