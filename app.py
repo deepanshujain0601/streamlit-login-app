@@ -23,7 +23,10 @@ import streamlit as st
 # ----------------------------------------------------------------------
 st.set_page_config(
     page_title="Login App",
+<<<<<<< HEAD
     page_icon="",
+=======
+>>>>>>> ad5a9fdc8e0079aea45769e92806bc34fe919696
     layout="centered",
 )
 
@@ -141,7 +144,7 @@ def render_dashboard():
             logout()
             st.rerun()
 
-    st.title(f"Welcome, {user['name']} 👋")
+    st.title(f"Welcome, {user['name']}")
     st.caption(f"Role: {user['role']}")
     st.success("You have successfully logged in and reached the protected dashboard.")
 
