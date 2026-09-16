@@ -18,24 +18,17 @@ from datetime import datetime
 
 import streamlit as st
 
-# ----------------------------------------------------------------------
-# Page config
-# ----------------------------------------------------------------------
 st.set_page_config(
     page_title="Login App",
-<<<<<<< HEAD
     page_icon="",
-=======
->>>>>>> ad5a9fdc8e0079aea45769e92806bc34fe919696
     layout="centered",
 )
 
-# ----------------------------------------------------------------------
-# "Database" — in a real app this would be a proper DB (Postgres, etc.)
-# Passwords below are pre-hashed with SHA-256.
+# Database
+# Passwords:-
 # demo_user  -> Demo@123
 # admin      -> Admin@123
-# ----------------------------------------------------------------------
+
 def _hash(password: str) -> str:
     return hashlib.sha256(password.encode("utf-8")).hexdigest()
 
@@ -55,9 +48,7 @@ USER_DB = {
 
 MAX_ATTEMPTS = 3
 
-# ----------------------------------------------------------------------
 # Session state initialisation
-# ----------------------------------------------------------------------
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 if "username" not in st.session_state:
@@ -92,10 +83,6 @@ def logout():
     st.session_state.login_attempts = 0
     st.session_state.login_time = None
 
-
-# ----------------------------------------------------------------------
-# UI: Login screen
-# ----------------------------------------------------------------------
 def render_login():
     st.title("Login")
     st.caption("Sign in to continue")
@@ -127,15 +114,11 @@ def render_login():
         st.code("username: demo_user\npassword: Demo@123", language="text")
         st.code("username: admin\npassword: Admin@123", language="text")
 
-
-# ----------------------------------------------------------------------
-# UI: Dashboard (protected page)
-# ----------------------------------------------------------------------
 def render_dashboard():
     user = USER_DB[st.session_state.username]
 
     with st.sidebar:
-        st.header("👤 Account")
+        st.header("Account")
         st.write(f"**Name:** {user['name']}")
         st.write(f"**Role:** {user['role']}")
         st.write(f"**Logged in at:** {st.session_state.login_time}")
@@ -164,10 +147,6 @@ def render_dashboard():
         }
     )
 
-
-# ----------------------------------------------------------------------
-# Router
-# ----------------------------------------------------------------------
 if st.session_state.authenticated:
     render_dashboard()
 else:
